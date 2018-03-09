@@ -94,6 +94,9 @@ object Chapter3 {
   def append[A](left: CustomList[A], right: CustomList[A]): CustomList[A] =
     foldRight(left, right)(Cons(_, _))
 
+  def concat[A](as: CustomList[CustomList[A]]): CustomList[A] =
+    foldRight(as, CustomList[A]())(append)
+
     implicit class ListExtensions[A](as: CustomList[A]){
       def length: Int = length2(as)
       def reverse: CustomList[A] = _reverse(as)
